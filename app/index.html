@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Maker — GTA-style cover art from your photos</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover editor">
+    <h1>Vice Cover Maker</h1>
+    <p class="tagline">Your photos, turned into a Vice City poster. Pick a layout, grade it, export the PNG.</p>
+
+    <fieldset>
+      <legend>1 · Photos</legend>
+      <label class="file-label">Add photos from your machine
+        <input id="photos" type="file" accept="image/*" multiple>
+      </label>
+      <div id="thumbs" class="thumbs" aria-label="Loaded photos"></div>
+      <p class="hint">Or use the two sample photos, already loaded. Drag on the preview to pan the selected panel.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Layout</legend>
+      <div class="layout-pick" id="layouts" role="group" aria-label="Layout">
+        <button type="button" data-layout="grid" class="active">Grid 2×2</button>
+        <button type="button" data-layout="hero">Hero + 3</button>
+        <button type="button" data-layout="full">Full-bleed</button>
+        <button type="button" data-layout="tilted">Tilted snaps</button>
+      </div>
+      <label>Panel
+        <select id="panel">
+          <option value="0">Panel 1</option>
+          <option value="1">Panel 2</option>
+          <option value="2">Panel 3</option>
+          <option value="3">Panel 4</option>
+        </select>
+      </label>
+      <label>Photo for this panel
+        <select id="panelPhoto"></select>
+      </label>
+      <label>Zoom <span id="zoomVal">1.0×</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.05" value="1">
+      </label>
+      <label>Pan sideways <span id="dxVal">0</span>
+        <input id="dx" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+      <label>Pan up / down <span id="dyVal">0</span>
+        <input id="dy" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+      <button id="fillAll" type="button" class="ghost">Use this photo in every panel</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Caption</legend>
+      <label>Title <input id="title" type="text" maxlength="28" value="VICE CITY"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="40" value="one last ride"></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Grade &amp; finish</legend>
+      <div class="grade-pick" id="grades" role="group" aria-label="Colour grade"></div>
+      <label class="check"><input id="grain" type="checkbox" checked> Film grain</label>
+      <label class="check"><input id="vignette" type="checkbox" checked> Vignette</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · Export PNG</legend>
+      <div class="export-pick">
+        <button id="exportSquare" type="button">Square 1080 × 1080</button>
+        <button id="exportPortrait" type="button">Portrait 1080 × 1350</button>
+        <button id="exportWide" type="button">Wide 1920 × 1080</button>
+      </div>
+      <p id="status" role="status"></p>
+    </fieldset>
+  </section>
+
+  <section class="stage" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
